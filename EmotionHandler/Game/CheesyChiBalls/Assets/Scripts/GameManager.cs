@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     private float enemyTimeCount = 0f,
         mountainTimeCount = 0f,
         cloudTimeCount = 0f;
-    //public static float Range(float min, float max);
     private int spawnNumber = 0;
     public GameObject monsterHappy, monsterSad, monsterAnger, monsterNeutral,
         mountain,
@@ -30,7 +29,7 @@ public class GameManager : MonoBehaviour
         allGameObjects = GameObject.FindObjectsOfType<GameObject>();
         if (level == 0)
         {
-            level = 2;
+            level = 1;
         }
     }
 
@@ -58,8 +57,7 @@ public class GameManager : MonoBehaviour
             {
                 enemyTimeCount = 0;
                 spawnNumber += 1;
-                Instantiate(monsterSad, new Vector2(10f, 5), Quaternion.identity);//Random.Range(-20f,4.2f)), Quaternion.identity);
-                //SleepTimeout(10);
+                Instantiate(monsterSad, new Vector2(10f, 5), Quaternion.identity);
                 Instantiate(monsterHappy, new Vector2(10f, 4.2f * Mathf.Sin(spawnNumber * 0.2f * Mathf.PI)), Quaternion.identity);
             }
 
@@ -106,22 +104,21 @@ public class GameManager : MonoBehaviour
             Instantiate(cloud, new Vector2(5f + cloudXOffset, cloudYOffset), Quaternion.identity);
         }
 
-        if (Input.GetAxis("Vertical")>0f)
+        if (Input.GetKey(KeyCode.UpArrow))
         {
             player.moveUp();
         }
-
-        if (Input.GetAxis("Vertical")<0f)
+        else if (Input.GetKey(KeyCode.DownArrow))
         {
             player.moveDown();
         }
 
-        if (Input.GetAxis("Horizontal") < 0f)
+        else if (Input.GetKey(KeyCode.LeftArrow))
         {
             player.moveLeft();
         }
 
-        if (Input.GetAxis("Horizontal") > 0f)
+        else if (Input.GetKey(KeyCode.RightArrow))
         {
             player.moveRight();
         }
