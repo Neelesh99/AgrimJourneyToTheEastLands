@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
     private int lives = 3;
     SpriteRenderer m_SpriteRenderer;
     Sprite anger, sad, happy, neutral;
-    TextAsset textFile;
     // Use this for initialization
     void Start()
     {
@@ -20,20 +19,21 @@ public class Player : MonoBehaviour
         sad = Resources.Load<Sprite>("Sprites/monk-sad");
         happy = Resources.Load<Sprite>("Sprites/monk-happy");
         neutral = Resources.Load<Sprite>("Sprites/monk-neutral");
-        textFile = Resources.Load<TextAsset>("Filed");
         m_SpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //emotion = System.IO.File.ReadAllText("Resources");
-        emotion = textFile.text;
+        emotion = System.IO.File.ReadAllText("C:\\Users\\Osann\\OneDrive\\Documents\\unity\\AGrimJourneyToTheEastLands\\EmotionHandler\\Game\\CheesyChiBalls\\Assets\\Resources\\Filed.txt");
+
         chiCount += Time.deltaTime;
         if (chiCount >= 1 / ballFreq)
         {
             chiCount = 0;
-            Instantiate(chiball, transform.position, Quaternion.identity);
+            var newChiball = Instantiate(chiball, transform.position, Quaternion.identity);
+            var scr = newChiball.GetComponent<Chiball>();
+            scr.typeSetter(emotion);
         }
         switch (emotion)
         {

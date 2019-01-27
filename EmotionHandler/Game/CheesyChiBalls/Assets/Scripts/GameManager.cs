@@ -37,8 +37,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        string emotion = System.IO.File.ReadAllText(@"C:\Users\Ramon\Desktop\emotion.txt");
-
         enemyTimeCount += Time.deltaTime;
 
         if (level == 1)
