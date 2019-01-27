@@ -40,8 +40,13 @@ public class Chiball : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D target)
     {
-
-        Destroy(target.gameObject);
+        if (((target.tag == "happyEnemy") && (type=="Happiness"))
+            | ((target.tag == "sadEnemy") && (type == "Sadness"))
+            | ((target.tag == "neutralEnemy") && (type == "Neutral"))
+            | ((target.tag == "angerEnemy") && (type == "Anger")))
+        {
+            Destroy(target.gameObject);
+        }        
     }
 
     public void typeSetter(string emotion) {

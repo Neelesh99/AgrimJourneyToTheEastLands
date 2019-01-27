@@ -61,4 +61,15 @@ public class Player : MonoBehaviour
     {
         transform.Translate(playerSpeed * Vector2.down * Time.deltaTime);
     }
+
+    public void moveLeft()
+    {
+        transform.Translate(playerSpeed * Vector2.left * Time.deltaTime);
+    }
+
+    public void moveRight()
+    {
+        transform.Translate(playerSpeed * Vector2.right * Time.deltaTime);
+    }
+
 }

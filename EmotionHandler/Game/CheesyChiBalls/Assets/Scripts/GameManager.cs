@@ -106,15 +106,24 @@ public class GameManager : MonoBehaviour
             Instantiate(cloud, new Vector2(5f + cloudXOffset, cloudYOffset), Quaternion.identity);
         }
 
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetAxis("Vertical")>0f)
         {
             player.moveUp();
-            Debug.Log("Moving Up");
         }
-        else if (Input.GetKey(KeyCode.DownArrow))
+
+        if (Input.GetAxis("Vertical")<0f)
         {
             player.moveDown();
-            Debug.Log("Moving Down");
+        }
+
+        if (Input.GetAxis("Horizontal") < 0f)
+        {
+            player.moveLeft();
+        }
+
+        if (Input.GetAxis("Horizontal") > 0f)
+        {
+            player.moveRight();
         }
     }
 
